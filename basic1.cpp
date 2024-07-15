@@ -1,30 +1,34 @@
-#include <stdio.h>
+#include <iostream>
+#include <cstdlib>   // For rand() and srand()
+#include <ctime>     // For time()
+using namespace std;
 
- int main(){
- /* int a , b ,res;
-  a = 10;
-  b =20;
+int main() {
+    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
 
-  res = a+b;
+    int lowerBound = 1;   // Lower bound of the number range
+    int upperBound = 100; // Upper bound of the number range
+    int numberToGuess = rand() % (upperBound - lowerBound + 1) + lowerBound;  // Generate the random number
 
-  printf("%d \n",a);
-  printf("%d %d \n", a , b);  
-  printf("%d %d %d  \n", a , b ,res);
-printf("Addition  of %d and %d = %d \n", a, b , res);
-  printf(" (%d) + (%d) = (%d)", a , b ,res); */
+    int guess;
+    int attempts = 0;
 
-/*int a , b ,res;
-scanf("%d",&a);
-scanf("%d",&b);
+    cout << "Welcome to the Number Guessing Game!" << endl;
+    cout << "I have picked a number between " << lowerBound << " and " << upperBound << ". Guess what it is!" << endl;
 
-res  =a+b;
-printf("Addition  of %d and %d = %d \n", a, b , res); */
- int a , b ,res;
- printf("Enter Two numbers :");
-scanf("%d %d",&a , &b);
+    do {
+        cout << "Enter your guess: ";
+        cin >> guess;
+        attempts++;
 
+        if (guess < numberToGuess) {
+            cout << "Too low! Try again." << endl;
+        } else if (guess > numberToGuess) {
+            cout << "Too high! Try again." << endl;
+        } else {
+            cout << "Congratulations! You guessed the number " << numberToGuess << " correctly in " << attempts << " attempts!" << endl;
+        }
+    } while (guess != numberToGuess);
 
-res  =a+b;
-printf("Addition  of %d and %d = %d \n", a, b , res);
-  return 0;  
- }
+    return 0;
+}
